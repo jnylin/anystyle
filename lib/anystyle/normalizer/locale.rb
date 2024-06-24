@@ -18,7 +18,7 @@ module AnyStyle
           :location,
           :journal,
           :publisher,
-          :note
+          #:note
         ).flatten.compact.join(' ')
 
         return item if sample.empty?

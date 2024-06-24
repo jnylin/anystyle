@@ -67,7 +67,7 @@ module AnyStyle
         raise ArgumentError if value.empty?
 
         others = value.sub!(
-          /(,\s+)?((\&\s+)?\bet\s+(al|coll)\b|\bu\.\s*a\b|(\band|\&)\s+others|(\boch\b\s+andra|m\.\s*fl\.|et\s+al))\s*\.*$/, ''
+          /(,\s+)?((\&\s+)?\bet\s+(al|coll)\b|\bu\.\s*a\b|(\band|\&)\s+others|(\boch\b\s+andra|m\.?\s*fl\.?|et\s+al))\s*\.*$/, ''
         ) || value.sub!(/\.\.\.|…/, '')
 
         # Add surname/initial punctuation separator for Vancouver-style names

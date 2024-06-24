@@ -18,7 +18,7 @@ module AnyStyle
           :location,
           :journal,
           :publisher,
-          :note
+          #:note
         ).flatten.compact.join(' ')
 
         return item if sample.empty?
@@ -34,7 +34,11 @@ module AnyStyle
 
     def detect_language(string)
       if instance_variable_defined?('@ld') && string.length > 8
-        @ld.find_language(string).language
+        most_likely_language = @ld.find_language(string)
+
+        if ( most_likely_language.probability > 0.7 )
+          return most_likely_language.language
+        end
       end
     end
 

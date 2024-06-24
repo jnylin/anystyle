@@ -1,3 +1,4 @@
+# coding: utf-8
 module AnyStyle
   require 'namae'
 
@@ -14,7 +15,7 @@ module AnyStyle
 
         @namae = Namae::Parser.new({
           prefer_comma_as_separator: true,
-          separator: /\A(and|AND|&|;|und|UND|y|e)\s+/,
+          separator: /\A(and|AND|&|;|und|UND|y|e|och|OCH)\s+/,
           appellation: /\A(?!x)x/,
           title: /\A(?!x)x/
         })
@@ -66,7 +67,7 @@ module AnyStyle
         raise ArgumentError if value.empty?
 
         others = value.sub!(
-          /(,\s+)?((\&\s+)?\bet\s+(al|coll)\b|\bu\.\s*a\b|(\band|\&)\s+others).*$/, ''
+          /(,\s+)?((\&\s+)?\bet\s+(al|coll)\b|\bu\.\s*a\b|(\band|\&)\s+others|(\boch\b\s+andra|m\.\s*fl\.|et\s+al))\s*\.*$/, ''
         ) || value.sub!(/\.\.\.|…/, '')
 
         # Add surname/initial punctuation separator for Vancouver-style names

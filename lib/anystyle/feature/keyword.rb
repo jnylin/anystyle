@@ -20,7 +20,7 @@ module AnyStyle
                /^übers(etz(t|ung))?$/i,
                /^trad(uction|ucteurs?|uit)?$/i,
                /譯/,
-               /^(övers(ättning|ättare))$/i
+               /^övers(ättning|ättare)?$/i
             :translator
           when /^(dissertation|thesis)$/i,
                /^(avhandling)$/i
@@ -50,8 +50,9 @@ module AnyStyle
           when /^report$/i
             :report
           when /^(edn|edition|expanded|rev(ised)?|p?reprint(ed)?|illustrated)$/i,
-            /^editio|aucta$/i
-            /^(aufl(age)?|\p{Alpha}*ausg(abe)?)$/i
+            /^editio|aucta$/i,
+            /^(aufl(age)?|\p{Alpha}*ausg(abe)?)$/i,
+            /^(utgåva|upplaga|rev(iderad)?)$/i
             :edition
           when /^(nd|date|spring|s[uo]mmer|autumn|fall|winter|frühling|herbst)$/i,
                /^(jan(uary?)?|feb(ruary?)?|mar(ch|z)?|apr(il)?|ma[yi]|jun[ei]?)$/,

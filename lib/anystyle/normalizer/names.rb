@@ -49,6 +49,8 @@ module AnyStyle
           .gsub(/\b[Hh]erausgegeben von\s+/, '')
           .gsub(/\b((d|ein)er )?[Üü]ber(s\.|setzt|setzung|tragen|tragung) v(\.|on)\s+/, '')
           .gsub(/\b[Tt]rans(l?\.|lated|lation)(\s+by\b)?\s*/, '')
+          .gsub(/\b[Öö]vers(att|ättning)(\s+av\b)?\s*/, '')
+          .gsub(/\b[Ss]vensk\s+översättning(\s+av\b)?\s*/, '')
           .gsub(/\b[Tt]rad(ucteurs?|(uit|\.)(\s+par\b)?)\s*/, '')
           .gsub(/\b([Dd]ir(\.|ected))(\s+by)?\s+/, '')
           .gsub(/\b([Pp]rod(\.|uce[rd]))(\s+by)?\s+/, '')

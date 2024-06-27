@@ -36,7 +36,7 @@ module AnyStyle
       if instance_variable_defined?('@ld') && string.length > 8
         most_likely_language = @ld.find_language(string)
 
-        if ( most_likely_language.probability > 0.7 )
+        if ( most_likely_language.probability >= 0.8 )
           return most_likely_language.language
         end
       end

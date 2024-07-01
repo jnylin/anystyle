@@ -21,6 +21,10 @@ module AnyStyle
         })
       end
 
+      def correct(value)
+        value.gsub(/et\.al/, 'et al')
+      end
+
       def normalize(item, prev: [], **opts)
         map_values(item) do |key, value|
           value.gsub!(/(^[\(\[]|[,;:\)\]]+$)/, '')
@@ -29,7 +33,7 @@ module AnyStyle
             prev[-1].dig(key, 0) || prev[-1].dig(:author, 0) || prev[-1].dig(:editor, 0)
           else
             begin
-              parse(strip(value))
+              parse(strip(correct(value)))
             rescue
               [{ literal: value.strip }]
             end
@@ -49,8 +53,7 @@ module AnyStyle
           .gsub(/\b[Hh]erausgegeben von\s+/, '')
           .gsub(/\b((d|ein)er )?[Üü]ber(s\.|setzt|setzung|tragen|tragung) v(\.|on)\s+/, '')
           .gsub(/\b[Tt]rans(l?\.|lated|lation)(\s+by\b)?\s*/, '')
-          .gsub(/\b[Öö]vers(att|ättning)(\s+av\b)?\s*/, '')
-          .gsub(/\b[Ss]vensk\s+översättning(\s+av\b)?\s*/, '')
+          .gsub(/\b([Ss]vensk\s)?[Öö]vers(att|ättning)(\s+av\b)?\s*/, '')
           .gsub(/\b[Tt]rad(ucteurs?|(uit|\.)(\s+par\b)?)\s*/, '')
           .gsub(/\b([Dd]ir(\.|ected))(\s+by)?\s+/, '')
           .gsub(/\b([Pp]rod(\.|uce[rd]))(\s+by)?\s+/, '')
@@ -59,7 +62,7 @@ module AnyStyle
           .gsub(/\([^\)]*\)?/, '')
           .gsub(/\[[^\]]*\)?/, '')
           .gsub(/[;:]/, ',')
-          .gsub(/^\p{^L}+|\s+\p{^L}+$/, '')
+          .gsub(/^\p{^L}+|\s*\p{^L}+$/, '')
           .gsub(/[\s,\.]+$/, '')
           .gsub(/,{2,}/, ',')
           .gsub(/\s+\./, '.')

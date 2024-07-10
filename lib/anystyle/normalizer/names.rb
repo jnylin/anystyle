@@ -1,6 +1,6 @@
 # coding: utf-8
 module AnyStyle
-  require 'namae'
+  require 'namae' # Namae is a parser for human names.
 
   class Normalizer
     class Names < Normalizer
@@ -33,7 +33,12 @@ module AnyStyle
             prev[-1].dig(key, 0) || prev[-1].dig(:author, 0) || prev[-1].dig(:editor, 0)
           else
             begin
-              parse(strip(correct(value)))
+              # Don't parse the name of organizations
+              if organization?(value)
+                [{ literal: value.strip.gsub(/\.$/,'') }]
+              else
+                parse(strip(correct(value)))
+              end
             rescue
               [{ literal: value.strip }]
             end
@@ -47,7 +52,7 @@ module AnyStyle
 
       def strip(value)
         value
-          .gsub(/^[Ii]n:?\s+/, '')
+          .gsub(/^[Ii]n?:?\s+/, '')
           .gsub(/\b[EÉeé]d(s?\.|itors?\.?|ited|iteurs?|ité)(\s+(by|par)\s+|\b|$)/, '')
           .gsub(/\b([Hh](rsg|gg?)\.|Herausgeber)\s+/, '')
           .gsub(/\b[Hh]erausgegeben von\s+/, '')
@@ -66,6 +71,18 @@ module AnyStyle
           .gsub(/[\s,\.]+$/, '')
           .gsub(/,{2,}/, ',')
           .gsub(/\s+\./, '.')
+      end
+
+      def organization?(value)
+        components = value.split(/\s+(and|AND|&|;|und|UND|y|e|och|OCH)\s+/)
+
+        components.any? do |component|
+          contains_org_keyword = component.match?(/\b(Institute|University|Organization|Association|Society|Corporation|Corp|Inc|Ltd|Department|Agency|Committee|Council)\b/i)
+          ends_with_org_suffix = component.match?(/verket$/i)
+          all_capitalized = component.split.all? { |word| word.match?(/\b[A-Z]+\b/) }
+
+          contains_org_keyword || ends_with_org_suffix || all_capitalized
+        end
       end
 
       def parse(value)

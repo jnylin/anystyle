@@ -98,6 +98,10 @@ module AnyStyle
           value.gsub!(/\b(\p{Lu}[^\s,.]+)\s+([\p{Lu}][\p{Lu}\-]{0,3})(,|[.]?$)/, '\1, \2\3')
         end
 
+        if value.match(/^\b[A-Z][a-z]{1,}(,\s\b[A-Z][a-z]{1,}){2,}/)
+          puts value
+        end
+
         names = namae.parse!(value).map { |name|
           name.normalize_initials
           name.to_h.reject { |_, v| v.nil? }

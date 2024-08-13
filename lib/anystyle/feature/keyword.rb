@@ -1,3 +1,4 @@
+# coding: utf-8
 module AnyStyle
   class Feature
     class Keyword < Feature
@@ -10,30 +11,37 @@ module AnyStyle
           when /^ed(s|itors?|ited?|iteurs?)?$/i,
                /^(hg|hrsg|herausgeber)$/i,
                /^(compilador)$/i,
-               /編/
+               /編/,
+               /^(redaktör|red)$/i
             :editor
           when /著|撰/,
             :author
           when /^trans(l(ated|ators?|ation))?$/i,
                /^übers(etz(t|ung))?$/i,
                /^trad(uction|ucteurs?|uit)?$/i,
-               /譯/
+               /譯/,
+               /^övers(ättning|ättare)?$/i
             :translator
-          when /^(dissertation|thesis)$/i
+          when /^(dissertation|thesis)$/i,
+               /^(avhandling)$/i
             :thesis
-          when /^(proceedings|conference|meeting|transactions|communications|seminar|symposi(on|um))/i
+          when /^(proceedings|conference|meeting|transactions|communications|seminar|symposi(on|um))/i,
+               /^(konferens|möte|symposium)$/i
             :proceedings
-          when /^(Journal|Zeitschrift|Quarterly|Magazine?|Times|Rev(iew|vue)?|Bulletin|News|Week|Gazett[ea])/
+          when /^(Journal|Zeitschrift|Quarterly|Magazine?|Times|Rev(iew|vue)?|Bulletin|News|Week|Gazett[ea])/,
             :journal
           when /^in$/i, /收入/
             :in
           when /^([AaUu]nd|y|e)$/
             :and
-          when /^(etal|others)$/
+          when /^(etal|others)$/,
+               /^m\.fl\.$/i
             :etal
-          when /^(pp?|pages?|S(eiten?)?|ff?)$/
+          when /^(pp?|pages?|S(eiten?)?|ff?)$/,
+               /^(s(idor?)?)$/i
             :page
-          when /^(vol(ume)?s?|iss(ue)?|n[or]?|number|fasc(icle|icule)?|suppl(ement)?|j(ahrgan)?g|heft)$/i
+          when /^(vol(ume)?s?|iss(ue)?|n[or]?|number|fasc(icle|icule)?|suppl(ement)?|j(ahrgan)?g|heft)$/i,
+               /^(vol(ym)?|nr|nummer|h(äfte)?)$/i
             :volume
           when /^(ser(ies?)?|reihe|[ck]oll(e[ck]tion))$/i
             :series
@@ -42,8 +50,9 @@ module AnyStyle
           when /^report$/i
             :report
           when /^(edn|edition|expanded|rev(ised)?|p?reprint(ed)?|illustrated)$/i,
-            /^editio|aucta$/i
-            /^(aufl(age)?|\p{Alpha}*ausg(abe)?)$/i
+            /^editio|aucta$/i,
+            /^(aufl(age)?|\p{Alpha}*ausg(abe)?)$/i,
+            /^(utgåva|upplaga|rev(iderad)?)$/i
             :edition
           when /^(nd|date|spring|s[uo]mmer|autumn|fall|winter|frühling|herbst)$/i,
                /^(jan(uary?)?|feb(ruary?)?|mar(ch|z)?|apr(il)?|ma[yi]|jun[ei]?)$/,

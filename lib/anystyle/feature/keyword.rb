@@ -14,7 +14,7 @@ module AnyStyle
                /編/,
                /^(redaktör|red)$/i
             :editor
-          when /著|撰/,
+          when /著|撰/
             :author
           when /^trans(l(ated|ators?|ation))?$/i,
                /^übers(etz(t|ung))?$/i,
@@ -28,11 +28,11 @@ module AnyStyle
           when /^(proceedings|conference|meeting|transactions|communications|seminar|symposi(on|um))/i,
                /^(konferens|möte|symposium)$/i
             :proceedings
-          when /^(Journal|Zeitschrift|Quarterly|Magazine?|Times|Rev(iew|vue)?|Bulletin|News|Week|Gazett[ea])/,
+          when /^(Journal|Zeitschrift|Quarterly|Magazine?|Times|Rev(iew|vue)?|Bulletin|News|Week|Gazett[ea])/
             :journal
           when /^in$/i, /收入/
             :in
-          when /^([AaUu]nd|y|e)$/
+          when /^([AaUu]nd|y|e|[Oo]ch)$/
             :and
           when /^(etal|others)$/,
                /^m\.fl\.$/i

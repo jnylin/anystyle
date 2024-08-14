@@ -1,3 +1,4 @@
+# coding: utf-8
 module AnyStyle
   class Normalizer
     class Container < Normalizer
@@ -10,6 +11,7 @@ module AnyStyle
             .sub(/^of\s+/, '')
             .sub(/^收入/, '')
             .sub(/^(\w+ )?presented at (the )?/i, '')
+            .sub(/^[Ii](?:\s+|:)\s+(\p{^Ll})/, '\1')
         end
       end
     end

@@ -5,7 +5,7 @@ module AnyStyle
 
       def normalize(item, **opts)
         each_value(item) do |_, value|
-          value.gsub!(/^[\(\[\{]|[\]\)\}]$/, '')
+          value.gsub!(/^[\(\[\{]|[\]\)\}]\.?$/, '')
         end
       end
     end

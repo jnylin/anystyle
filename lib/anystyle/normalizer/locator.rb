@@ -9,7 +9,7 @@ module AnyStyle
         map_values(item) do |key, value|
           case key
           when :isbn
-            value[/[\d-]+/]
+            value[/[\d-]{3,}/]
           when :url
             doi = doi_extract(value) if value =~ /doi\.org\//i
             append item, :doi, doi unless doi.nil?

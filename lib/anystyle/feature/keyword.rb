@@ -12,7 +12,7 @@ module AnyStyle
                /^(hg|hrsg|herausgeber)$/i,
                /^(compilador)$/i,
                /編/,
-               /^(redaktör|red)$/i
+               /^((huvud)?redaktör(er)?|red)$/i
             :editor
           when /著|撰/
             :author

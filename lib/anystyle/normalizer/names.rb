@@ -54,6 +54,7 @@ module AnyStyle
         value
           .gsub(/^[Ii]n?:?\s+/, '')
           .gsub(/\b[EÉeé]d(s?\.|itors?\.?|ited|iteurs?|ité)(\s+(by|par)\s+|\b|$)/, '')
+          .gsub(/\b([Hh]uvud)?red(aktör)?(er)?/,'')
           .gsub(/\b([Hh](rsg|gg?)\.|Herausgeber)\s+/, '')
           .gsub(/\b[Hh]erausgegeben von\s+/, '')
           .gsub(/\b((d|ein)er )?[Üü]ber(s\.|setzt|setzung|tragen|tragung) v(\.|on)\s+/, '')

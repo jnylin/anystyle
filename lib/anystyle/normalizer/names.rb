@@ -100,7 +100,8 @@ module AnyStyle
         end
 
         if value.match(/^\b[A-Z][a-z]{1,}(,\s\b[A-Z][a-z]{1,}){2,}/)
-          puts value
+          # What was tought here?
+          #puts value
         end
 
         names = namae.parse!(value).map { |name|
